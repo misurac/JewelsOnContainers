@@ -16,5 +16,50 @@ namespace ProductCatalogAPI.Data
 
         public DbSet<EventType> EventTypes { get; set; }
         public DbSet<Event> Events { get; set; }
+
+        //on creating the tables. entity=model=table.
+        //providing the rules to create the table
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<EventType>(e =>
+            {
+                e.Property(t => t.Type)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                e.Property(t => t.Id)
+                .IsRequired()
+                .ValueGeneratedOnAdd();
+            });
+
+            modelBuilder.Entity<Event>(e =>
+            {
+                e.Property(E => E.Id)
+                    .IsRequired()
+                    .ValueGeneratedOnAdd();
+
+                e.Property(E => E.Name)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                e.Property(E => E.Description)
+                    .IsRequired()
+                    .HasMaxLength(500);
+
+                e.Property(E => E.Date)
+                    .IsRequired();
+
+                e.Property(E => E.Price)
+                    .IsRequired();
+
+                //defining the foreign key relationship
+
+                e.HasOne(E => E.EventType)
+                    .WithMany()
+                    .HasForeignKey(E => E.EventTypeId);
+
+
+            });
+        }
     }
 }
