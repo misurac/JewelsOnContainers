@@ -1,4 +1,5 @@
-﻿using ProductCatalogAPI.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductCatalogAPI.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ namespace ProductCatalogAPI.Data
     public static class EventSeed
     {
         public static void Seed(EventContext eventContext)
-        { 
+        {
+            eventContext.Database.Migrate();
             if (!eventContext.EventTypes.Any())
             {
                 eventContext.EventTypes.AddRange(GetEventTypes());
