@@ -46,8 +46,13 @@ namespace ProductCatalogAPI.Data
                     .IsRequired()
                     .HasMaxLength(500);
 
+                e.Property(E => E.Location)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
                 e.Property(E => E.Date)
-                    .IsRequired();
+                    .IsRequired()
+                    .HasMaxLength(100);
 
                 e.Property(E => E.Price)
                     .IsRequired();

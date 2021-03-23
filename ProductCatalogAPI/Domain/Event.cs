@@ -10,8 +10,9 @@ namespace ProductCatalogAPI.Domain
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string Location { get; set; }
         public decimal Price { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
         public int EventTypeId { get; set; }
         public EventType EventType { get; set; }
