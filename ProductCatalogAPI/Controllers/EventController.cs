@@ -28,6 +28,8 @@ namespace ProductCatalogAPI.Controllers
                 .Skip(pageIndex * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
+
+            return Ok(events);
         }
     }
 }

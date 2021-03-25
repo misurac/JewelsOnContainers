@@ -9,6 +9,7 @@ namespace ProductCatalogAPI.Data
 {
     public class EventContext : DbContext
     {
+        //why do we inject options?
         public EventContext(DbContextOptions options) : base(options)
         {
 
@@ -17,8 +18,8 @@ namespace ProductCatalogAPI.Data
         public DbSet<EventType> EventTypes { get; set; }
         public DbSet<Event> Events { get; set; }
 
-        //on creating the tables. entity=model=table.
         //providing the rules to create the table
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EventType>(e =>
