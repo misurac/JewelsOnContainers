@@ -9,7 +9,7 @@ namespace ProductCatalogAPI.Data
 {
     public class EventContext : DbContext
     {
-        //why do we inject options?
+        //this "options" is given from the startup file
         public EventContext(DbContextOptions options) : base(options)
         {
 

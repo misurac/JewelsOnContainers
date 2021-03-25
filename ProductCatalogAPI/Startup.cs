@@ -28,7 +28,10 @@ namespace ProductCatalogAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            //creating a variable and setting it to the json value of ConnectionString
             var connectionString = Configuration["ConnectionString"];
+            //injecting the connection string to dbcontext
+            //telling the program what kind of database you will use
             services.AddDbContext<EventContext>(options => options.UseSqlServer(connectionString));
         }
 
