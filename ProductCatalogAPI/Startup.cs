@@ -29,9 +29,16 @@ namespace ProductCatalogAPI
         {
             services.AddControllers();
             //creating a variable and setting it to the json value of ConnectionString
-            var connectionString = Configuration["ConnectionString"];
+            //var connectionString = Configuration["ConnectionString"];
             //injecting the connection string to dbcontext
             //telling the program what kind of database you will use
+
+            var DatabaseServer = Configuration["DatabaseServer"];
+            var DatabaseName = Configuration["DatabaseName"];
+            var DatabaseUser = Configuration["DatabaseUser"];
+            var DatabasePassword = Configuration["DatabasePassword"];
+            var connectionString = $"Server={DatabaseServer};Database={DatabaseName};User Id={DatabaseUser};Password={DatabasePassword}";
+
             services.AddDbContext<EventContext>(options => options.UseSqlServer(connectionString));
         }
 
