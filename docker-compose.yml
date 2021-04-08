@@ -8,22 +8,22 @@ services:
       dockerfile: Dockerfile
     environment:
       ExternalCatalogBaseUrl: http://localhost:7810
-      DatabaseServer: mssqlserver
+      DatabaseServer: mymssqlserver
       DatabaseName: EventDB
       DatabaseUser: sa
       DatabasePassword: P@ssword(!)
     ports: 
-      - "7810:80"
+      - "7910:80"
     depends_on:
-      - mssqlserver
+      - mymssqlserver
     container_name: EventsServer
 
-  mssqlserver:
+  mymssqlserver:
     image: "mcr.microsoft.com/mssql/server:latest"
     environment:
       ACCEPT_EULA: Y
       SA_PASSWORD: P@ssword(!)
     ports:
-      - "1448:1433"
-    container_name: mssqlserver
+      - "1548:1433"
+    container_name: mymssqlserver
 
