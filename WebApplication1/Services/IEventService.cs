@@ -7,10 +7,9 @@ using WebMvc1.Models;
 
 namespace WebMvc1.Services
 {
-    public interface IIdentityService
+    public interface IEventService
     {
-        Task<EventPageInfo> GetCatalogItemsAsync(int page, int size, int? brand, int? type);
-        Task<IEnumerable<SelectListItem>> GetBrandsAsync();
+        Task<EventPageInfo> GetEventItemsAsync(int page, int size, int? type);
         Task<IEnumerable<SelectListItem>> GetTypesAsync();
     }
 }
