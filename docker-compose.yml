@@ -1,5 +1,9 @@
 version: '3.4'
 
+networks:
+  frontend:
+  backend:
+
 services:
   productcatalogapi:
     image: productcatalogapi
@@ -14,9 +18,28 @@ services:
       DatabasePassword: P@ssword(!)
     ports: 
       - "7910:80"
+    networks: 
+     - frontend
+     - backend
     depends_on:
       - mymssqlserver
     container_name: EventsServer
+
+  webmvc1:
+    image: jewels/webmvc1
+    build: 
+      context: .\WebMvc1
+      dockerfile: Dockerfile
+    environment:
+      EventUrl: http://productcatalogapi
+    ports: 
+     - "7911:80"
+    container_name: webshop1
+    networks:
+     - frontend
+    depends_on: 
+     - productcatalogapi
+      
 
   mymssqlserver:
     image: "mcr.microsoft.com/mssql/server:latest"
@@ -26,4 +49,6 @@ services:
     ports:
       - "1548:1433"
     container_name: mymssqlserver
+    networks:
+     - backend
 
