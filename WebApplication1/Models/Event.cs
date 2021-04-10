@@ -12,6 +12,7 @@ namespace WebMvc1.Models
         public string Description { get; set; }
         public string Location { get; set; }
         public decimal Price { get; set; }
+        public string PictureUrl { get; set; }
         public string Date { get; set; }
 
         public int EventTypeId { get; set; }
