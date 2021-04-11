@@ -11,7 +11,7 @@ services:
       context: .\ProductCatalogApi
       dockerfile: Dockerfile
     environment:
-      ExternalCatalogBaseUrl: http://localhost:7810
+      ExternalCatalogBaseUrl: http://localhost:7910
       DatabaseServer: mymssqlserver
       DatabaseName: EventDB
       DatabaseUser: sa

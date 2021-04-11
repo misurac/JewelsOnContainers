@@ -22,7 +22,7 @@ namespace WebMvc1.Infrastructure
                     var typeQs = (type.HasValue) ? type.Value.ToString() : "null";
                     filterQs = $"/type/{typeQs}";
                 }
-                return $"{baseUri}items{filterQs}?pageIndex={page}&pageSize={take}";
+                return $"{baseUri}events{filterQs}?pageIndex={page}&pageSize={take}";
             }
         }
     }

@@ -24,6 +24,8 @@ namespace WebMvc.Services
         }
 
         public async Task<EventPageInfo> GetEventItemsAsync(int page, int size, int? type)
+        
+        
         {
             var eventItemsUri = ApiPath.Events.GetAllEvents(_baseUrl, page, size, type);
             var dataString = await _client.GetStringAsync(eventItemsUri);

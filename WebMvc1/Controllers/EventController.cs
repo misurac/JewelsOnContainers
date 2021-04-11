@@ -18,8 +18,9 @@ namespace WebMvc1.Controllers
         }
         public async Task<IActionResult> Index(int? page, int? typesFilterApplied)
         {
-            var itemsOnPage = 10;
+            var itemsOnPage = 2;
 
+            
             var events = await _service.GetEventItemsAsync(page ?? 0, itemsOnPage, typesFilterApplied);
 
             var vm = new EventIndexViewModel
@@ -28,7 +29,7 @@ namespace WebMvc1.Controllers
                 Types = await _service.GetTypesAsync(),
                 PaginationInfo = new PaginationInfo
                 {
-                    ActualPage = page ?? 0,
+                    ActualPage = page ?? 0, 
                     ItemsPerPage = events.PageSize,
                     TotalItems = events.Count,
                     TotalPages = (int)Math.Ceiling((decimal)events.Count / itemsOnPage)

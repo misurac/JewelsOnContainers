@@ -42,7 +42,7 @@ namespace ProductCatalogAPI.Controllers
         }
 
         [HttpGet("[action]/type/{eventTypeId}")]
-        public async Task<IActionResult> Items(int? eventTypeId,
+        public async Task<IActionResult> Events(int? eventTypeId,       
                [FromQuery] int pageIndex = 0,
                [FromQuery] int pageSize = 6)
         {
