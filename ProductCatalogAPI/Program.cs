@@ -15,9 +15,11 @@ namespace ProductCatalogAPI
     {
         public static void Main(string[] args)
         {
+            //here we split up the .Build.Run so that the database is seeded
+            //before it is available to the user
             var host = CreateHostBuilder(args).Build();
-            //using statement will destroy the created variable when
-            //exiting the {}'s
+            
+
             using (var scope = host.Services.CreateScope())
             {
                 var serviceProviders = scope.ServiceProvider;
