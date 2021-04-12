@@ -18,6 +18,7 @@ namespace WebMvc1.Controllers
         }
         public async Task<IActionResult> Index(int? page, int? typesFilterApplied)
         {
+            
             var itemsOnPage = 2;
 
             
