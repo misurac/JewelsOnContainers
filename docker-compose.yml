@@ -25,6 +25,23 @@ services:
       - mymssqlserver
     container_name: EventsServer
 
+  tokenserver:
+    build:
+      context: .\TokenServiceApi
+      dockerfile: Dockerfile
+    image: jewels/tokenapi1
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      MvcClient: http://localhost:7911
+    ports:
+     - "7900:80"
+    container_name: tokenserviceapi
+    networks:
+     - backend
+     - frontend
+    depends_on:
+     - mymssqlserver  
+
   webmvc1:
     image: jewels/webmvc1
     build: 
@@ -32,6 +49,8 @@ services:
       dockerfile: Dockerfile
     environment:
       EventUrl: http://productcatalogapi
+      IdentityUrl: http://10.0.0.113:7900
+      CallBackUrl: http://localhost:7911
     ports: 
      - "7911:80"
     container_name: webshop1
@@ -39,7 +58,7 @@ services:
      - frontend
     depends_on: 
      - productcatalogapi
-      
+     - tokenserver
 
   mymssqlserver:
     image: "mcr.microsoft.com/mssql/server:latest"

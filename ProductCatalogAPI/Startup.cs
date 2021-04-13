@@ -37,7 +37,7 @@ namespace ProductCatalogAPI
             var DatabaseName = Configuration["DatabaseName"];
             var DatabaseUser = Configuration["DatabaseUser"];
             var DatabasePassword = Configuration["DatabasePassword"];
-            var connectionString = $"Server={DatabaseServer};Database={DatabaseName};User Id={DatabaseUser};Password={DatabasePassword}";
+            var connectionString = $"Server={DatabaseServer};Database={DatabaseName};Trusted_Connection=False;User Id={DatabaseUser};Password={DatabasePassword}";
 
             services.AddDbContext<EventContext>(options => options.UseSqlServer(connectionString));
         }

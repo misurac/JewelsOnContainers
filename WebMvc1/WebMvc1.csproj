@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\AccountController.cs" />
-    <Compile Remove="Models\ApplicationUser.cs" />
-    <Compile Remove="Services\IdentityService.cs" />
-    <Compile Remove="Services\IIdentityService.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\fonts\Montserrat-Bold.svg" />
     <None Include="wwwroot\fonts\Montserrat-Bold.woff2" />
     <None Include="wwwroot\fonts\Montserrat-Regular.svg" />
@@ -38,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="3.1.13" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
