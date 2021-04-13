@@ -32,7 +32,7 @@ services:
     image: jewels/tokenapi1
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      MvcClient: http://webmvc1
+      MvcClient: http://localhost:7911
     ports:
      - "7900:80"
     container_name: tokenserviceapi
@@ -58,7 +58,7 @@ services:
      - frontend
     depends_on: 
      - productcatalogapi
-      
+     - tokenserver
 
   mymssqlserver:
     image: "mcr.microsoft.com/mssql/server:latest"

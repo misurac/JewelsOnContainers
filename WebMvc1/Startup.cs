@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using WebMvc.Services;
 using WebMvc1.Infrastructure;
@@ -36,19 +37,20 @@ namespace WebMvc
             services.AddTransient<IIdentityService<ApplicationUser>, IdentityService>();
             var identityUrl = Configuration.GetValue<string>("IdentityUrl");
             var callBackUrl = Configuration.GetValue<string>("CallBackUrl");
+            IdentityModelEventSource.ShowPII = true;
             services.AddAuthentication(options =>
             {
-                //options.DefaultScheme = "Cookies";
-                //options.DefaultChallengeScheme = "oidc";
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
 
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-                //options.DefaultAuthenticateScheme = "Cookies";
+                //options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                //options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                
             })
-            //.AddCookie("Cookies")
-            //.AddOpenIdConnect("oidc", options =>
-            .AddCookie()
-            .AddOpenIdConnect(options =>
+            .AddCookie("Cookies")
+            .AddOpenIdConnect("oidc", options =>
+            //.AddCookie()
+            //.AddOpenIdConnect(options =>
             {
                 options.SignInScheme = "Cookies";
                 //options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;

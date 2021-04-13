@@ -17,11 +17,13 @@ namespace TokenServiceApi.Data
             UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
-            //create database schema if none exists
-            // _context.Database.EnsureCreated();
+            //if (context.Database.)
+            //{
+
+            //}
             context.Database.Migrate();
             //If there is already an Administrator role, abort
-            //  if (context.Roles.Any(r => r.Name == "Administrator")) return;
+            if (context.Roles.Any(r => r.Name == "Administrator")) return;
 
             //Create the Administartor Role
             // await roleManager.CreateAsync(new IdentityRole("Administrator"));
