@@ -16,6 +16,7 @@ using TokenServiceApi.Services;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Http;
 using IdentityServer4.Quickstart.UI;
+using System.Diagnostics;
 
 namespace TokenServiceApi.Controllers
 {
@@ -65,14 +66,18 @@ namespace TokenServiceApi.Controllers
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
+            Debug.WriteLine("***" + returnUrl + "***");
+            Debug.WriteLine("***" + ViewData["ReturnUrl"] + "***");
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                Debug.WriteLine("***" + result + "***");
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    Debug.WriteLine("***" + RedirectToLocal(returnUrl) + "***");
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
