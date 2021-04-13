@@ -2,7 +2,7 @@
     ViewData["Title"] = "Events";
     @model WebMvc1.ViewModels.EventIndexViewModel
 }
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+@*<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -44,7 +44,7 @@
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
-</div>
+</div>*@
 
 <section class="esh-catalog-filters">
     <div class="container">
@@ -62,7 +62,7 @@
 <div class="container">
     @if (Model.EventItems.Count() > 0)
     {
-        @Html.Partial("_pagination", Model.PaginationInfo)
+        @*@Html.Partial("_pagination", Model.PaginationInfo)*@
 
         <div class="esh-catalog-items row">
             @foreach (var eventItem in Model.EventItems)
