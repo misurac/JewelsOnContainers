@@ -31,19 +31,20 @@
 </head>
 <body>
     <header class="navbar navbar-light navbar-static-top">
-        <div class="container">
-            <article class="row">
-                <section class="col-lg-7 col-md-6 col-xs-12">
+        <div class="container body-content">
+            @*<article class="row">*@
+                @*<section class="col-lg-7 col-md-6 col-xs-12">*@
                     <a class="navbar-brand" routerLink="event">
                         @*<a asp-area="" asp-controller="Event" asp-action="Index">*@
-                            <img src="~/images/logo-4.png" width="100" height="100" class="align-center"/>
+                        <img src="~/images/EventSiteLogo.png"/>
                         @*</a>*@
                     </a>
-                </section>
-
                     @await Html.PartialAsync("_LoginPartial")
+                @*</section>*@
+
+                    @*@await Html.PartialAsync("_LoginPartial")*@
                 
-            </article>
+            @*</article>*@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 
@@ -54,24 +55,30 @@
             </div>
         </div>
     </header>
-    <div class="container body-content">
+    <div class="container body-content" >
         @RenderBody()
         <hr />
-        <footer class="esh-app-footer">
-            <div class="container">
-                <article class="row">
+        <div class="align-content-center">
+            <img src="~/images/EventSiteLogo.png" />
+            <a>
+                All Rights Reserved
+            </a>
+        </div>
+        
+        <!--<footer class="esh-app-footer">
+        <div class="container">
+            <article class="row">
 
-                    <section class="col-sm-6">
-                        <img class="esh-app-footer-brand" src="~/images/logo-4.png" />
-                    </section>
+                <section class="col-sm-6">
+                    <img class="esh-app-footer-brand" src="~/images/EventSiteLogo.png" />
+                </section>-->
+        @*<section class="col-sm-6">
+            <img class="esh-app-footer-text hidden-xs" src="~/images/main_footer_text.png" width="335" height="26" alt="footer text image" />
+        </section>*@
 
-                    <section class="col-sm-6">
-                        <img class="esh-app-footer-text hidden-xs" src="~/images/main_footer_text.png" width="335" height="26" alt="footer text image" />
-                    </section>
-
-                </article>
-            </div>
-        </footer>
+        <!--</article>
+        </div>
+    </footer>-->
     </div>
 
 
