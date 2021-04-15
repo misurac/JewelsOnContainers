@@ -39,7 +39,7 @@ namespace ProductCatalogAPI
             var DatabasePassword = Configuration["DatabasePassword"];
             var connectionString = $"Server={DatabaseServer};Database={DatabaseName};Trusted_Connection=False;User Id={DatabaseUser};Password={DatabasePassword}";
 
-            services.AddDbContext<EventContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<EventContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Transient);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
