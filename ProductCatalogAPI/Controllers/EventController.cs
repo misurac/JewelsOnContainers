@@ -25,7 +25,7 @@ namespace ProductCatalogAPI.Controllers
             [FromQuery]int pageIndex = 0, 
             [FromQuery]int pageSize = 2)
         {
-            var eventsCount = _context.Events.LongCountAsync();
+            var eventsCount = await _context.Events.LongCountAsync();
             var events = await _context.Events
                 .OrderBy(e => e.Name)
                 .Skip(pageIndex * pageSize)
@@ -35,7 +35,7 @@ namespace ProductCatalogAPI.Controllers
             {
                 PageIndex = pageIndex,
                 PageSize = events.Count,
-                Count = eventsCount.Result,
+                Count = eventsCount,
                 Data = events
             };
             return Ok(model);
@@ -52,7 +52,7 @@ namespace ProductCatalogAPI.Controllers
                 query = query.Where(c => c.EventTypeId == eventTypeId);
             }
 
-            var eventsCount = query.LongCountAsync();
+            var eventsCount = await query.LongCountAsync();
             var events = await query
                     .OrderBy(c => c.Name)
                     .Skip(pageIndex * pageSize)
@@ -63,7 +63,7 @@ namespace ProductCatalogAPI.Controllers
             {
                 PageIndex = pageIndex,
                 PageSize = events.Count,
-                Count = eventsCount.Result,
+                Count = eventsCount,
                 Data = events
             };
 
