@@ -1,4 +1,5 @@
 using CartApi.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,7 +29,7 @@ namespace CartApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddTransient<ICartRepository, RedisCartRepository>();
             services.AddSingleton<ConnectionMultiplexer>(cm =>
             {
@@ -36,6 +38,22 @@ namespace CartApi
                 configuration.AbortOnConnectFail = false;
                 return ConnectionMultiplexer.Connect(configuration);
             });
+
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+            var identityUrl = Configuration["IdentityUrl"];
+            //IdentityModelEventSource.ShowPII = true;
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.Authority = identityUrl.ToString();
+                options.RequireHttpsMetadata = false;
+                options.Audience = "basket";
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +67,8 @@ namespace CartApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
