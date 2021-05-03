@@ -16,6 +16,8 @@ namespace OrderApi.Models
 
         public int Units { get; set; }
         public int ProductId { get; private set; }
+        public Order Order { get; set; }
+        public int OrderId { get; set; }
 
         public OrderItem(int productId, string eventName, decimal unitPrice, int units = 1)
         {
