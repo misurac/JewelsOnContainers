@@ -10,14 +10,14 @@ namespace OrderApi.Models
     {
         public int Id { get; set; }
 
-        public string ProductName { get; set; }
+        public string EventName { get; set; }
         //public string PictureUrl { get; set; }
         public decimal UnitPrice { get; set; }
 
         public int Units { get; set; }
         public int ProductId { get; private set; }
 
-        public OrderItem(int productId, string productName, decimal unitPrice, int units = 1)
+        public OrderItem(int productId, string eventName, decimal unitPrice, int units = 1)
         {
             if (units <= 0)
             {
@@ -25,6 +25,8 @@ namespace OrderApi.Models
             }
 
             ProductId = productId;
+
+            EventName = eventName;
             UnitPrice = unitPrice;
 
             Units = units;
