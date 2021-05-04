@@ -31,7 +31,6 @@ services:
       dockerfile: Dockerfile
     image: jewels/tokenapi1
     environment:
-      ASPNETCORE_ENVIRONMENT: Development
       MvcClient: http://localhost:7911
     ports:
      - "7900:80"
@@ -71,7 +70,6 @@ services:
         max-size: "200k"
         max-file: "10"
     environment:
-      ASPNETCORE_ENVIRONMENT: Development
       IdentityUrl: http://10.0.0.113:7900
       DatabaseServer: mymssqlserver
       DatabaseName: EventDB
