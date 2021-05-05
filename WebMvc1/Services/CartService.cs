@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebMvc1.Infrastructure;
 using WebMvc1.Models;
+using WebMvc1.Models.OrderModels;
 
 namespace WebMvc1.Services
 {
@@ -108,6 +109,26 @@ namespace WebMvc1.Services
         {
             var context = _httpContextAccessor.HttpContext;
             return await context.GetTokenAsync("access_token");
+        }
+
+        public Order MapCartToOrder(Cart cart)
+        {
+            var order = new Order();
+            order.OrderTotal = 0;
+
+            cart.Items.ForEach(x =>
+            {
+                order.OrderItems.Add(new OrderItem()
+                {
+                    ProductId = int.Parse(x.ProductId),
+                    ProductName = x.ProductName,
+                    Units = x.Quantity,
+                    UnitPrice = x.UnitPrice
+                });
+                order.OrderTotal += (x.Quantity * x.UnitPrice);
+            });
+
+            return order;
         }
     }
 }
