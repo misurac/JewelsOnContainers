@@ -72,7 +72,7 @@ services:
     environment:
       IdentityUrl: http://10.0.0.113:7900
       DatabaseServer: mymssqlserver
-      DatabaseName: OrderDB
+      DatabaseName: OrdersDb
       DatabaseUser: sa
       DatabasePassword: P@ssword(!)
     ports:
@@ -95,6 +95,9 @@ services:
       IdentityUrl: http://10.0.0.113:7900
       CallBackUrl: http://localhost:7911
       CartUrl: http://cart
+      OrderUrl: http://order
+      StripePublicKey: pk_test_51InnapKyMdJMsUl68CTuy3HgR6pODtK9WAyX4PKf6ov0l6rVtGfcHxasqlWPfkrW8czzxGGJzsGTAg6oiZhEJ2gr00bOW7Cb8G
+      StripePrivateKey: sk_test_51InnapKyMdJMsUl6RtLF4QeVP9vrXh3bHQ5XiN1bzDmJeM9pAPwsDOGFdHLxhsNsJCQ7PwcBbtXUZ44YkKYHQ2Cl003z1DziB7
     ports: 
      - "7911:80"
     container_name: webshop1
